@@ -1,0 +1,7 @@
+---
+- name: Deploy worload cluster
+  hosts: localhost
+  become_user: root
+  any_errors_fatal: "true"
+  roles:
+    - { role: capi-cluster/workload }

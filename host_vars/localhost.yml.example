@@ -25,3 +25,5 @@ kube_config_local_location: ~/.kube/config
 kube_config_location: "~/.kube"
 
 kube_oidc_auth: false
+
+enable_gpu_nodes: false

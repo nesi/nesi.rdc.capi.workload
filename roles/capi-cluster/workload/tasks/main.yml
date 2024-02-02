@@ -26,6 +26,29 @@
     - name: Workload | Create and initialize cloud manager
       include_tasks: install-cloud-manager.yml
       when: cluster_intialized.stdout == ''
+
+    - name: Workload | Create and initialize auto-scaler
+      include_tasks: install-autoscaler.yml
+      when:
+      - cluster_intialized.stdout == ''
+      - cluster_worker_count < cluster_max_worker_count
+
+    - name: Workload GPU | Setting GPU Enabled boolean to {{ enable_gpu_nodes }}
+      set_fact:
+        enable_gpu_worker: "{{ enable_gpu_nodes }}"
+
+    - name: Workload GPU | Deploy extra node
+      block:  
+        - name: Workload GPU | Prerequisites
+          include_tasks: gpu-prerequisites.yml
+
+        - name: Workload GPU | Deploy GPU node
+          include_tasks: deploy-gpu-node.yml
+
+        - name: Workload GPU | Deploy GPU operator helm chart
+          include_tasks: gpu-helm-chart.yml
+      when:
+        - "enable_gpu_worker|default(false)|bool == true"
   when:
     - clouds_yaml_file.stat.exists
 

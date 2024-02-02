@@ -97,7 +97,7 @@ kubectl get secret CLUSTER_NAME-kubeconfig -o jsonpath='{.data.value}' | base64 
 
 ## Using Cluster autoscaler
 
-If the variable `cluster_max_worker_count` is greater then `cluster_worker_count` then Cluster Autoscaler will be deployed inside the workload cluster.
+If the variable `cluster_max_worker_count` is greater then `cluster_worker_count` then Cluster Autoscaler will be deployed inside the workload cluster. This will not scale the GPU nodes if they are enabled at this stage.
 
 ## Using nodes with GPU access
 

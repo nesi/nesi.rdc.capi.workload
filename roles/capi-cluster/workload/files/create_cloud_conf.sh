@@ -152,5 +152,6 @@ echo "tls-insecure=true" >> ${CAPO_CLOUD_PROVIDER_CONF_TMP}
 echo "[LoadBalancer]" >> ${CAPO_CLOUD_PROVIDER_CONF_TMP}
 echo "lb-provider=\"ovn\"" >> ${CAPO_CLOUD_PROVIDER_CONF_TMP}
 echo "lb-method=\"SOURCE_IP_PORT\"" >> ${CAPO_CLOUD_PROVIDER_CONF_TMP}
+echo "floating-network-id=\"3f405cc9-28a3-4973-b5a1-7f50f112e5d5\""
 
 cat ${CAPO_CLOUD_PROVIDER_CONF_TMP}

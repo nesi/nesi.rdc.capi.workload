@@ -6,6 +6,8 @@ cluster_rdc_project: NeSI_RDC_PROJECT_NAME
 cluster_name: CAPI_CLUSTER_NAME
 cluster_namespace: default
 
+capi_management_cluster: MANGEMENT_CLUSTER_NAME
+
 openstack_ssh_key: NeSI_RDC_KEYPAIR_NAME
 
 cluster_control_plane_count: 1

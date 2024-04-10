@@ -1,1 +1,4 @@
 host_vars/localhost.yml
+environments/*
+!environments/example
+#!environments/cni-tools-prod

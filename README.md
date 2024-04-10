@@ -10,13 +10,13 @@ The CAPI images are generated from the following image bulder repo [CAPI Images]
 
 ## Setup
 
-Make a copy of `host_vars/localhost.yml.example` and rename it to `localhost.yml` and fill in the requried parameters
+Make a copy of the folder `example` in the `environments` folder and rename it to something that reflects your environment name example `environments/my-test` and fill in the requried parameters within `variables.yml`
 
 ``` { .sh }
-cp host_vars/localhost.yml.example host_vars/localhost.yml
+cp environments/example environments/my-test
 ```
 
-Inside the `host_vars/localhost.yml` file is some user configuration required.
+Inside the `environments/my-test/variables.yml` file is some user configuration required.
 
 ``` { .sh }
 kubernetes_version: v1.27.6
@@ -25,6 +25,8 @@ capi_image_name: rocky-89-kube-v1.27.6
 cluster_rdc_project: NeSI_RDC_PROJECT_NAME
 cluster_name: CAPI_CLUSTER_NAME
 cluster_namespace: default
+
+capi_management_cluster: MANGEMENT_CLUSTER_NAME
 
 openstack_ssh_key: NeSI_RDC_KEYPAIR_NAME
 
@@ -51,25 +53,22 @@ kube_oidc_auth: false
 
 `CAPI_CLUSTER_NAME` the name of your cluster
 
+`MANGEMENT_CLUSTER_NAME` the name of your management cluster that this workload cluster will deploy from
+
 `NeSI_RDC_KEYPAIR_NAME` the name of your keypair that is in the NeSI RDC
 
 There are the following CAPI images available
 
 ``` { .sh }
-Rocky 8.9
+Rocky 9.3
 
-rocky-89-kube-v1.22.17
-rocky-89-kube-v1.24.17
-rocky-89-kube-v1.26.12
-rocky-89-kube-v1.25.16
-rocky-89-kube-v1.27.6
-rocky-89-kube-v1.28.5
+rocky-93-kube-v1.26.12
+rocky-93-kube-v1.27.6
+rocky-93-kube-v1.28.5
 
 
 Ubuntu 22.04
 
-ubuntu-2204-kube-v1.22.17
-ubuntu-2204-kube-v1.23.4
 ubuntu-2204-kube-v1.26.7
 ubuntu-2204-kube-v1.27.6
 ubuntu-2204-kube-v1.28.3
@@ -77,9 +76,9 @@ ubuntu-2204-kube-v1.28.3
 
 For workload clusters we recommend Kuberenetes version 1.27+
 
-If changing the `capi_image_name` within `localhost.yml` please also ensure the `kubernetes_version` matches the same.
+If changing the `capi_image_name` within `variables.yml` please also ensure the `kubernetes_version` matches the same.
 
-Example would be using the image `rocky-89-kube-v1.27.6` would mean the `kubernetes_version` would be `v1.27.6`
+Example would be using the image `rocky-93-kube-v1.27.6` would mean the `kubernetes_version` would be `v1.27.6`
 
 ## Run
 

@@ -2,9 +2,9 @@
 - name: Deploy worload cluster
   hosts: localhost
   vars:
-    appliances_environment_root: "{{ lookup('env', 'APPLIANCES_ENVIRONMENT_ROOT') }}"
+    capi_environment_root: "{{ lookup('env', 'CAPI_ENVIRONMENT_ROOT') }}"
   vars_files:
-    - "{{ appliances_environment_root }}/variables.yml"
+    - "{{ capi_environment_root }}/variables.yml"
   become_user: root
   any_errors_fatal: "true"
   roles:

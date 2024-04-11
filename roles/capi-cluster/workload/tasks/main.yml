@@ -1,4 +1,7 @@
 ---
+- name: Workload | Check vars are set
+  include_tasks: check-vars.yml
+
 - name: Workload | Prerequisites
   include_tasks: prerequisites.yml
 

@@ -80,6 +80,12 @@ If changing the `capi_image_name` within `variables.yml` please also ensure the 
 
 Example would be using the image `rocky-93-kube-v1.27.6` would mean the `kubernetes_version` would be `v1.27.6`
 
+## Install ansible dependencies
+
+``` { .sh }
+ansible-galaxy role install -r requirements.yml -p roles
+```
+
 ## Run
 
 Running the below command will start the anisble role and deploy a workload cluster

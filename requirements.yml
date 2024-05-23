@@ -1,0 +1,5 @@
+---
+roles:
+  - src: https://github.com/lbrick/ansible-capi-workload.git
+    version: v0.2.1
+    name: ansible-capi-workload

@@ -13,7 +13,7 @@ The CAPI images are generated from the following image bulder repo [CAPI Images]
 Make a copy of the folder `example` in the `environments` folder and rename it to something that reflects your environment name example `environments/my-test` and fill in the requried parameters within `variables.yml`
 
 ``` { .sh }
-cp environments/example environments/my-test
+cp -r environments/example environments/my-test
 ```
 
 Inside the `environments/my-test/variables.yml` file is some user configuration required.
@@ -47,6 +47,14 @@ kube_config_local_location: ~/.kube/config
 kube_config_location: "~/.kube"
 
 kube_oidc_auth: false
+
+capi_managed_secgroups: true
+
+yaml_openstack_cloud: openstack
+
+source_ips:
+  - 163.7.144.0/21
+  - "{{ cluster_node_cidr }}"
 ```
 
 `NeSI_RDC_PROJECT_NAME` needs to be replaced with your NeSI RDC Project name e.g. NeSI-Training-Test
@@ -83,7 +91,8 @@ Example would be using the image `rocky-93-kube-v1.27.6` would mean the `kuberne
 ## Install ansible dependencies
 
 ``` { .sh }
-ansible-galaxy role install -r requirements.yml -p roles
+ansible-galaxy role install -r requirements.yml -p ansible/roles
+ansible-galaxy collection install -r requirements.yml -p ansible/collections
 ```
 
 ## Run
@@ -91,7 +100,7 @@ ansible-galaxy role install -r requirements.yml -p roles
 Running the below command will start the anisble role and deploy a workload cluster
 
 ``` { .sh }
-ansible-playbook setup-workload.yml
+ansible-playbook ansible/setup-workload.yml
 ```
 
 To get the kubeconfig from the management cluster for your newly created workload cluster run the following while replacing `CLUSTER_NAME` with the name of your cluster

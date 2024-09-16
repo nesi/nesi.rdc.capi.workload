@@ -2,5 +2,6 @@ host_vars/localhost.yml
 environments/*
 !environments/example
 #!environments/cni-tools-prod
-roles/ansible-capi-workload
-roles/ansible-capi-workload/*
+ansible/roles/ansible-capi-workload
+ansible/roles/ansible-capi-workload/*
+ansible/collections/*

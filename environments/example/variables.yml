@@ -32,3 +32,11 @@ kube_config_location: "~/.kube"
 kube_oidc_auth: false
 
 enable_gpu_nodes: false
+
+capi_managed_secgroups: true
+
+yaml_openstack_cloud: openstack
+
+source_ips:
+  - 163.7.144.0/21
+  - "{{ cluster_node_cidr }}"

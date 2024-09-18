@@ -95,6 +95,26 @@ ansible-galaxy role install -r requirements.yml -p ansible/roles
 ansible-galaxy collection install -r requirements.yml -p ansible/collections
 ```
 
+## If looking to create ansible managed security groups
+
+It is recommended to use a python virtual environment to contain the required dependencies.
+
+``` { .sh }
+# create a virtual environment using the Python3 virtual environment module
+python3 -m venv ~/nesi-capi
+
+# activate the virtual environment
+source ~/nesi-capi/bin/activate
+
+# install ansible into the venv
+pip install ansible ansible-core
+
+# install the openstacksdk
+pip install "openstacksdk>=1.0.0"
+```
+
+
+
 ## Run
 
 Running the below command will start the anisble role and deploy a workload cluster

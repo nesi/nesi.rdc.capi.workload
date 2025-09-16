@@ -1,42 +1,66 @@
 ---
-kubernetes_version: v1.27.6
-capi_image_name: rocky-89-kube-v1.27.6 #ubuntu-2204-kube-v1.26.7-ca
+# Kubernetes and CAPI Configuration
+kubernetes_version: v1.32.7
+capi_image_name: rocky-9-containerd-v1.32.7
 
+# Cluster Details
 cluster_rdc_project: NeSI_RDC_PROJECT_NAME
 cluster_name: CAPI_CLUSTER_NAME
-cluster_namespace: default
+cluster_namespace: "{{ cluster_rdc_project }}"
 
-capi_management_cluster: MANGEMENT_CLUSTER_NAME
+# Management Cluster
+capi_management_cluster: MANAGEMENT_CLUSTER_NAME
 
+# OpenStack SSH Key
 openstack_ssh_key: NeSI_RDC_KEYPAIR_NAME
 
+# Control Plane Configuration
 cluster_control_plane_count: 1
 control_plane_flavor: balanced1.2cpu4ram
 control_plane_volume_size: 0
 
+# Worker Nodes Configuration
 cluster_worker_count: 2
 cluster_max_worker_count: 3
 worker_flavour: balanced1.2cpu4ram
 worker_volume_size: 0
 
+# Network Configuration
+cluster_network: "{{ cluster_rdc_project }}"
 cluster_node_cidr: 10.10.0.0/24
 cluster_pod_cidr: 192.168.0.0/16
 cluster_route_id: 3c0cb930-2bbe-4c9c-ac61-6dbc9410c3e9
+cluster_external_network_id: 3f405cc9-28a3-4973-b5a1-7f50f112e5d5
 
+# OpenStack Configuration
 clouds_yaml_location: ~/.config/openstack/clouds.yaml
 clouds_yaml_cloud: openstack
 
+# Kubeconfig Configuration
 kube_config_local_location: ~/.kube/config
 kube_config_location: "~/.kube"
 
-kube_oidc_auth: false
-
+# GPU Configuration
 enable_gpu_nodes: false
 
-capi_managed_secgroups: true
-
+# Security Groups
+capi_managed_secgroups: false
 yaml_openstack_cloud: openstack
 
+# Source IPs for Security Groups
 source_ips:
   - 163.7.144.0/21
   - "{{ cluster_node_cidr }}"
+
+# OIDC Authentication (Optional)
+kube_oidc_auth: false
+
+# Additional Configuration
+additional_cluster_secgroups: []
+additional_cluster_networks: []
+
+# Cluster Settle Timeout
+cluster_settle_timeout_base: 3
+
+# Autoscaler Configuration
+autoscaler_overprovision: false

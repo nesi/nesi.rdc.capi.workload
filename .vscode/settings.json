@@ -1,0 +1,4 @@
+{
+    "ansible.python.interpreterPath": "/home/kahu/.venv/openstackcli/bin/python",
+    "templateFinder.extension.activated": true
+}
